@@ -1,0 +1,28 @@
+#Screenbash
+
+deprobe () {
+ 
+    while read name || [ -n "$name" ]; do 
+   
+           echo "$name" |  awk -F '//' '{print $2}'
+    done
+}
+#Funçoes 
+
+ckdir () {
+    mkdir -p $1
+    cd $1
+}
+
+massnap () {
+    
+   xargs -t -I {}  sh -c "nmap -A {} | tee {}"
+
+}
+
+beautify () {
+
+    ls | xargs -t -I {} sh -c 'js-beautify {} > beauty.{}; rm {}'
+}
+
+
