@@ -1,0 +1,9 @@
+gauplus -t 10 -random-agent -subs $1 | | unfurl -u domain
+
+waybackurls $1
+
+gospider -S probed_tmp --js -t 50 -d 3 --sitemap --robots -w -r | tee gospider.txt
+
+
+
+
