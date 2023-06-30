@@ -1,0 +1,1 @@
+curl --request GET --url "https://api.securitytrails.com/v1/domain/$1/subdomains?children_only=false&include_inactive=true" --header 'APIKEY: cmE2f3uFtu7q5o9TxZGX9yIY5TEGEdVo' --header 'Accept: application/json' | gron | grep subdomains | choose 2 | tr -d \"\; | xargs -I {} echo {}.$1

@@ -1,5 +1,10 @@
-cat $1 | httpx -random-agent -retries 2 -no-color -o probed
 
-gospider -S probed --js -t 50 -d 3 --sitemap --robots -w -r | tee gospider.txt
+subdomain_list=$1 
+pasta=$2
 
-cat gospider.txt | pcregrep -o "https?://.*" | unfurl -u domain | sort -u | tee sitesLinkados
+cat $subdomain_list | httprobe | tee ${pasta}probed 
+
+gospider -S ${pasta}probed --js -t 50 -d 3 --sitemap --robots -w -r | tee ${pasta}gospider.txt
+
+cat ${pasta}gospider.txt | pcregrep -o "https?://.*" | unfurl -u domain | sort -u | tee ${pasta}sitesLinkados
+
